@@ -28,7 +28,6 @@ class Solution {
         for (int i = ansLeft; i <= ansRight; i++) {
             ret += s.charAt(i);
         }
-        System.out.println(ans + " " + ansLeft + " " + ansRight);
         return ret;
     }
 }
