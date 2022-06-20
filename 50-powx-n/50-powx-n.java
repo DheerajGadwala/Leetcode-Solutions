@@ -1,35 +1,32 @@
 class Solution {
     
-    Map<Double, Map<Integer, Double>> cache = new HashMap<>();
-    
-    public double myPow(double x, int n) {
-        if (!cache.containsKey(x)) {
-            cache.put(x, new HashMap<>());
-        }
-        else if (cache.get(x).containsKey(n)) {
-            return cache.get(x).get(n);
-        }
-        if (n == 1) {
-            return x;
-        }
-        else if (n == 0) {
+    public double myPow(double x, int m) {
+        long n;
+        long k = (int) m;
+        if (m == 0) {
             return 1;
+        } 
+        else if (m < 0) {
+            n = -k;
         }
-        else if (n == -1) {
-            return 1/x;
+        else {
+            n = k;
         }
-        else if (n % 2 == 0) {
-            cache.get(x).put(n, myPow(x, n/2) * myPow(x, n/2));
-            return cache.get(x).get(n);
+        long y = 1;
+        double z = x;
+        double ret = 1;
+        while (y <= n && y > 0) {
+            if ((y & n) == y) {
+                ret *= z;
+            }
+            y <<= 1;
+            z *= z;
         }
-        else if (n % 2 == 1) {
-            cache.get(x).put(n, myPow(x, n/2) * myPow(x, n/2+1));
-            return cache.get(x).get(n);
+        if (m < 0) {
+            return 1/ret;
         }
-        else if (n % 2 == -1) {
-            cache.get(x).put(n, myPow(x, n/2) * myPow(x, n/2-1));
-            return cache.get(x).get(n);
+        else {
+            return ret;
         }
-        return 0;
     }
 }
