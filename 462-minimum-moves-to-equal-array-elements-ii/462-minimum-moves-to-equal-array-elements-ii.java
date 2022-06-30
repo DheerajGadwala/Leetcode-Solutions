@@ -16,11 +16,11 @@ class Solution {
         if (i == j) {
             return nums[i];
         }
-        int x = r.nextInt(i, j+1);
+        //int x = r.nextInt(i, j+1);
         int p = i, k = ++i;
-        int t = nums[x];
-        nums[x] = nums[p];
-        nums[p] = t;
+        //int t = nums[x];
+        //nums[x] = nums[p];
+        //nums[p] = t;
         while (k <= j) {
             if (nums[k] < nums[p]) {
                 int temp = nums[i];
