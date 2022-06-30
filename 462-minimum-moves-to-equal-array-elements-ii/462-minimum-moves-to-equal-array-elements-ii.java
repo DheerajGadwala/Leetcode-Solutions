@@ -1,6 +1,9 @@
 class Solution {
 
+    Random r;
+    
     public int minMoves2(int[] nums) {
+        r = new Random();
         int median = quickSelect(nums, 0, nums.length-1);
         int ans = 0;
         for (int k: nums) {
@@ -13,7 +16,11 @@ class Solution {
         if (i == j) {
             return nums[i];
         }
+        int x = r.nextInt(i, j+1);
         int p = i, k = ++i;
+        int t = nums[x];
+        nums[x] = nums[p];
+        nums[p] = t;
         while (k <= j) {
             if (nums[k] < nums[p]) {
                 int temp = nums[i];
