@@ -1,7 +1,6 @@
 class Solution {
     public String shortestCommonSupersequence(String s1, String s2) {
         String s3 = lcs(s1, s2);
-        System.out.println(s3);
         int i = 0, j = 0, k = 0;
         String ans = "";
         while (i < s1.length() && j < s2.length() && k < s3.length()) {
@@ -47,16 +46,9 @@ class Solution {
                 }
             }
         }
-        // for (int[] k: dp) {
-        //     for (int p: k) {
-        //         System.out.print(p + " ");
-        //     }
-        //     System.out.println();
-        // }
         int i = s1.length(), j = s2.length();
         String ans = "";
         while (i != 0 && j != 0) {
-            //System.out.println(i + " " + j);
             if (i > 0 && j > 0 && dp[i-1][j-1] >= dp[i][j-1] && dp[i-1][j-1] >= dp[i-1][j]) {
                 ans = dp[i-1][j-1] != dp[i][j] ? s1.charAt(i-1) + ans : ans;
                 i--;j--;
