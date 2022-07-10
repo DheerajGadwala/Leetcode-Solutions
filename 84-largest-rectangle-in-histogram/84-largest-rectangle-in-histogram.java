@@ -9,8 +9,7 @@ class Solution {
             int l = i;
             while (!s.empty() && heights[s.peek()[0]] >= heights[i]) {
                 l = s.peek()[1];
-                ans = Math.max(ans, (i - s.peek()[1]) * heights[s.peek()[0]]);  
-                // System.out.println(ans + " " + s.peek()[1] + " " +  (i - 1)  + " " + heights[s.peek()[0]]);
+                ans = Math.max(ans, (i - s.peek()[1]) * heights[s.peek()[0]]);
                 s.pop();
             }
             s.push(new Integer[] {i, l});
