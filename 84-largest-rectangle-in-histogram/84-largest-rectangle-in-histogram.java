@@ -3,34 +3,24 @@ class Solution {
     public int largestRectangleArea(int[] heights) {
         
         Stack<Integer[]> s = new Stack<>();
-        int[] answers = new int[heights.length];
-        
-        for (int i = heights.length-1; i >= 0; i--) {
-            int h = i;
-            while (!s.empty() && s.peek()[0] >= heights[i]) {
-                h =s.pop()[1];
-            }
-            s.add(new Integer[] {heights[i], h});
-            answers[i] = heights[i] * (h - i + 1);
-        }
-        
-        s = new Stack<>();
+        int ans = 0;
         
         for (int i = 0; i < heights.length; i++) {
-            int h = i;
-            while (!s.empty() && s.peek()[0] >= heights[i]) {
-                h =s.pop()[1];
+            int l = i;
+            while (!s.empty() && heights[s.peek()[0]] >= heights[i]) {
+                l = s.peek()[1];
+                ans = Math.max(ans, (i - s.peek()[1]) * heights[s.peek()[0]]);  
+                // System.out.println(ans + " " + s.peek()[1] + " " +  (i - 1)  + " " + heights[s.peek()[0]]);
+                s.pop();
             }
-            s.add(new Integer[] {heights[i], h});
-            answers[i] += heights[i] * (i - h);
+            s.push(new Integer[] {i, l});
         }
-        
-        int ret = 0;
-        for (int k: answers) {
-            ret = Math.max(ret, k);
+        int r = s.peek()[0];
+        while (!s.empty()) {
+            ans = Math.max(ans, (r - s.peek()[1] + 1) * heights[s.peek()[0]]);
+            s.pop();
         }
-        
-        return ret;
+        return ans;
         
     }
 }
