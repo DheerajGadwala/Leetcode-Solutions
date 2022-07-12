@@ -10,19 +10,7 @@ class Solution {
                 StringBuilder brem = new StringBuilder();
                 for (int i = 1; i < aa.length; i++) arem.append(aa[i]+" ");
                 for (int i = 1; i < ba.length; i++) brem.append(ba[i]+" ");
-                boolean adig = true, bdig = true;
-                for (char k: aa[1].toCharArray()) {
-                    if (k-48 < 0 || k-48>9) {
-                        adig = false;
-                        break;
-                    }
-                }
-                for (char k: ba[1].toCharArray()) {
-                    if (k-48 < 0 || k-48>9) {
-                        bdig = false;
-                        break;
-                    }
-                }
+                boolean adig = aa[1].charAt(0) - 48 >= 0 && aa[1].charAt(0) - 48 <= 9, bdig = ba[1].charAt(0) - 48 >= 0 && ba[1].charAt(0) - 48 <= 9;
                 if (adig && bdig) {
                     return 0;
                 }
