@@ -13,34 +13,17 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        
-        def assignIDs(node):
-            nonlocal i, ids
-            if node is not None:
-                assignIDs(node.left)
-                ids[node] = i
-                i += 1
-                assignIDs(node.right)
-        
-        def inOrder(node):
-            if node is not None:
-                return inOrder(node.left) + [node.val, ids[node]] + inOrder(node.right)
+        ret = []
+        def res(node = root):
+            if node is None:
+                ret.append("N")
             else:
-                return []
-
-        def preOrder(node):
-            if node is not None:
-                return [node.val, ids[node]] + preOrder(node.left) + preOrder(node.right)
-            else:
-                return []
+                ret.append(str(node.val))
+                res(node.left)
+                res(node.right)
         
-        i = 0
-        ids = dict()
-        assignIDs(root)
-        
-        inorder = inOrder(root)
-        preorder = preOrder(root)
-        return str(inorder)[1:-1] + "|" + str(preorder)[1:-1]
+        res()
+        return ','.join(ret)
         
 
     def deserialize(self, data):
@@ -49,44 +32,20 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        if data == "|":
-            return None
-        inorder, preorder = data.split("|")
-        inorder = inorder.split(", ")
-        preorder = preorder.split(", ")
-        inorder = [int(i) for i in inorder]
-        preorder = [int(i) for i in preorder]
-        val = dict()
-        for i in range(0, len(inorder), 2):
-            val[inorder[i+1]] = inorder[i]
-        inorder = [inorder[i] for i in range(1, len(inorder), 2)]
-        preorder = [preorder[i] for i in range(1, len(preorder), 2)]
-        
-        def res(inorder=inorder, preorder=preorder):
-            if len(inorder) == 0:
+        t = data.split(",")
+        pos = 0
+        def res():
+            nonlocal pos
+            if t[pos] == "N":
+                pos+=1
                 return None
             else:
-                n = preorder[0]
-                lIn = []
-                rIn = []
-                for i in range(len(inorder)):
-                    if inorder[i] == n:
-                        lIn = inorder[:i]
-                        rIn = inorder[i+1:]
-                        break
-                lInSet = set(lIn)
-                rInSet = set(rIn)
-                lPre = []
-                rPre = []
-                for i in range(len(preorder)):
-                    if preorder[i] in lInSet:
-                        lPre.append(preorder[i])
-                    elif preorder[i] in rInSet:
-                        rPre.append(preorder[i])
-                t = TreeNode(val[n], res(lIn, lPre), res(rIn, rPre))
-                return t
+                ret = TreeNode(int(t[pos]))
+                pos+=1
+                ret.left = res()
+                ret.right = res()
+                return ret
         return res()
-        
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
