@@ -12,7 +12,5 @@ class Solution:
                 dp[i + 1][j + 1] = max(dp[i+1][j], dp[i][j+1])
                 if s[i] == srev[j]:
                     dp[i+1][j+1] = max(dp[i+1][j+1], 1 + dp[i][j])
-                else:
-                    dp[i+1][j+1] = max(dp[i+1][j+1], dp[i][j])
         
         return len(s) - dp[-1][-1]
