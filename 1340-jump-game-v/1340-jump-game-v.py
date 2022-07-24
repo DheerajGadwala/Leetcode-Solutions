@@ -1,3 +1,5 @@
+# Use monotonic stack to find the left and right boundaries of each index
+# Then DFS + Memoization to find the answer
 class Solution:
     def maxJumps(self, arr: List[int], d: int) -> int:
         n = len(arr)
