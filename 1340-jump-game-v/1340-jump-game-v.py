@@ -18,7 +18,6 @@ class Solution:
             rb[i] = min(n, min(rb[i], i + d + 1))
             s.append(i)
         
-        #print(lb, rb)
         mem = dict()
         def dfs(u):
             if u in mem:
@@ -33,7 +32,5 @@ class Solution:
         
         ans = 0
         for i in range(n):
-            #print(dfs(i), end = ' ')
             ans = max(ans, dfs(i))
-        #print()
         return ans
