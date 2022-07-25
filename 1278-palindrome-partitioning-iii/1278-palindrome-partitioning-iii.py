@@ -12,15 +12,15 @@ class Solution:
                 j -= 1
             return ret
         
-        t = [[getChanges(j, i) for i in range(n)] for j in range(n)]
+        cost = [[getChanges(i, j) for j in range(n)] for i in range(n)]
 
         @cache
-        def res(st = 0, f = 0, k = k):
-            if st == len(s) and f == len(s) and k == 0:
+        def res(l = 0, r = 0, k = k):
+            if l == len(s) and r == len(s) and k == 0:
                 return 0
-            elif f == len(s) or k <= 0:
+            elif r == len(s) or k <= 0:
                 return math.inf
             else:
-                return min(t[st][f] + res(f+1, f+1, k-1), res(st, f+1, k))
+                return min(cost[l][r] + res(r + 1, r + 1, k - 1), res(l, r +1, k))
         
         return res()
