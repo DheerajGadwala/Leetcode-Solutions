@@ -1,1 +1,1 @@
-Explanation: Since there are only 200 blocks, all we need to do is check if we can escape to a distance of more than 200 from both the source and the target. If so, there are not enough blocks to block them hence return true.
+​
