@@ -7,34 +7,24 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        lca = None
-        def tra(node = root):
-            nonlocal lca
+        parent = dict()
+        depth = dict()
+        def res(node = root, par = None, d = 0):
             if node is not None:
-                l = tra(node.left)
-                r = tra(node.right)
-                if node is p:
-                    if l is q or r is q:
-                        lca = node
-                        return None
-                    else:
-                        return p
-                elif node is q:
-                    if l is p or r is p:
-                        lca = node
-                        return None
-                    else:
-                        return q
-                elif (l is p or r is p) and (l is q or r is q):
-                    lca = node
-                    return None
-                elif l is p or r is p:
-                    return p
-                elif l is q or r is q:
-                    return q
-                else:
-                    return None
+                parent[node] = par
+                depth[node] = d
+                res(node.left, node, d + 1)
+                res(node.right, node, d + 1)
+        res()
+        
+        while p != q:
+            if depth[p] > depth[q]:
+                p = parent[p]
+            elif depth[p] < depth[q]:
+                q = parent[q]
             else:
-                return None
-        tra()
-        return lca
+                p = parent[p]
+                q = parent[q]
+        
+        return p
+        
