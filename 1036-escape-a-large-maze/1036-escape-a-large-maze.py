@@ -2,12 +2,15 @@ import heapq
 class Solution:
     def isEscapePossible(self, blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
         
+        escapeDist = len(blocked)
+        
         def dfs(s, t, blocked):
+            nonlocal escapeDist
             stk = [s]
             blocked.add(tuple(s))
             while len(stk) != 0:
                 x, y = stk.pop()
-                if (abs(s[0]-x) + abs(s[1]-y) >= 200):
+                if (abs(s[0]-x) + abs(s[1]-y) >= escapeDist):
                     return True
                 neighbours = [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
                 for n in neighbours:
