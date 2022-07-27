@@ -1,9 +1,7 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         
-        mn = nums[0]
-        mx = nums[0]
-        ans = nums[0]
+        mn = mx = ans = nums[0]
         
         for i in range(1, len(nums)):
             
