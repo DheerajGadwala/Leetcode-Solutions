@@ -23,6 +23,9 @@ class Solution {
             boolean universal = true;
             for (char c: fin.keySet()) {
                 universal &= m.getOrDefault(c, 0) >= fin.get(c);
+                if (!universal) {
+                    break;
+                }
             }
             if (universal) {
                 ret.add(word);
