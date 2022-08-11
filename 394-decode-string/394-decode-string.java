@@ -7,32 +7,33 @@ class Solution {
         pos = 0;
         this.s = s;
         this.s = "1[" + s + "]";
-        return res();
+        return res().toString();
     }
     
-    public String res() {
-        String num = "", fin = "", curr = "";
+    public StringBuilder res() {
+        StringBuilder num = new StringBuilder(), fin = new StringBuilder(), curr = new StringBuilder();
         while (pos < s.length()) {
             char c = s.charAt(pos++);
             if (c >= '0' && c <= '9') {
-                fin += curr;
-                curr = "";
-                num += c;
+                fin.append(curr);
+                curr = new StringBuilder();
+                num.append(c);
             }
             else if (c >= 'a' && c <= 'z'){
-                curr += c;
+                curr.append(c);
             }
             else if (c == '[') {
                 curr = res();
-                int n = Integer.parseInt(num);
+                int n = Integer.parseInt(num.toString());
                 while (n > 0) {
-                    fin += curr;
+                    fin.append(curr);
                     n--;
                 }
-                num = ""; curr = "";
+                num = new StringBuilder(); curr = new StringBuilder();
             }
             else {
-                return fin + curr;
+                fin.append(curr);
+                return fin;
             }
         }
         return fin;
