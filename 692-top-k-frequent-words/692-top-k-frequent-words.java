@@ -7,19 +7,32 @@ class Solution {
         PriorityQueue<String> q = new PriorityQueue<>((a,b) -> {
             int cmp = Integer.compare(cnt.get(b), cnt.get(a));
             if (cmp != 0) {
-                return cmp;
+                return -cmp;
             }
             else {
-                return a.compareTo(b);
+                return -a.compareTo(b);
             }
         });
         for (String word: cnt.keySet()) {
-            q.add(word);
+            if (q.size() < k) {
+                q.add(word);
+            }
+            else {
+                q.add(word);
+                q.poll();
+            }
         }
         List<String> ret = new ArrayList<>();
-        while (k > 0 && q.size() > 0) {
+        
+        while (q.size() > 0) {
             ret.add(q.poll());
-            k--;
+        }
+        int i = 0, j = k - 1;
+        while (i < j) {
+            String temp = ret.get(i);
+            ret.set(i, ret.get(j));
+            ret.set(j, temp);
+            i++;j--;
         }
         return ret;
     }
