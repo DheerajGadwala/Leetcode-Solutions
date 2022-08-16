@@ -9,11 +9,11 @@
  * }
  */
 class Solution {
-    public ListNode oddEvenList(ListNode head) {
-        ListNode olh = new ListNode(0), elh = new ListNode(0), ol = olh, el = elh, curr = head;
-        int i = 1;
+    public ListNode oddEvenList(ListNode curr) {
+        ListNode olh = new ListNode(0), elh = new ListNode(0), ol = olh, el = elh;
+        boolean flag = true;
         while (curr != null) {
-            if (i % 2 == 1) {
+            if (flag) {
                 ol.next = curr;
                 ol = ol.next;
             }
@@ -22,7 +22,7 @@ class Solution {
                 el = el.next;
             }
             curr = curr.next;
-            i++;
+            flag = !flag;
         }
         ol.next = elh.next;
         el.next = null;
