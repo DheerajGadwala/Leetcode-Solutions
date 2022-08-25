@@ -6,7 +6,6 @@ class Solution {
             int prevMax = a;
             a = Math.max(a * n, Math.max(n, b * n));
             b = Math.min(prevMax * n, Math.min(b * n, n));
-            System.out.println(a + " " + b);
             ans = Math.max(a, ans);
         }
         return ans;
