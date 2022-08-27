@@ -19,3 +19,29 @@ class Solution {
         return ss.size();
     }
 }
+
+/**
+class Solution {
+    public int countPalindromicSubsequence(String s) {
+        int n = s.length();
+        Map<Character, Integer> r = new HashMap<>();
+        Set<Character> l = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            r.put(c, r.getOrDefault(c, 0) + 1);
+        }
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            r.put(c, r.get(c) - 1);
+            for (char t: l) {
+                if (r.get(t) > 0) {
+                    set.add("" + c + t);
+                }
+            }
+            l.add(c);
+        }
+        return set.size();
+    }
+}
+**/
