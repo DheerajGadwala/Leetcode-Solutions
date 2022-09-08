@@ -1,16 +1,23 @@
 class Solution:
     def isSolvable(self, words: List[str], result: str) -> bool:
         
+        # reverse words
         words = [i[::-1] for i in words]
         result = result[::-1]
         allWords = words + [result]
+        
+        # chars that can not be 0
         nonZero = set()
         for word in allWords:
             if len(word) > 1:
                 nonZero.add(word[-1])
+        
+        # numbers selected in backtracking
         selected = set()
+        # char to Int map
         charToInt = dict()
         mxLen = max([len(i) for i in allWords])
+        
         def res(i = 0, c = 0, sm = 0):
             if c == mxLen:
                 return 1 if sm == 0 else 0
@@ -22,6 +29,7 @@ class Solution:
                         return res(0, c+1, carry)
                     else:
                         return 0
+                # result[c] should be mapped to num if a mapping exists
                 if result[c] in charToInt:
                     if charToInt[result[c]] != num:
                         return 0
@@ -29,6 +37,7 @@ class Solution:
                         return res(0, c+1, carry)
                 elif num in selected:
                     return 0
+                # if mapping does not exist, create a mapping
                 elif (num == 0 and result[c] not in nonZero) or num > 0:
                     selected.add(num)
                     charToInt[result[c]] = num
@@ -46,6 +55,7 @@ class Solution:
                     return res(i+1, c, sm + charToInt[word[c]])
                 else:
                     ret = 0
+                    # possibilities for word[c]
                     for j in range(10):
                         if (j == 0 and word[c] not in nonZero) or j > 0:
                             if j not in selected:
