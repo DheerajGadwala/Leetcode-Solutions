@@ -13,7 +13,7 @@ class Solution:
         mxLen = max([len(i) for i in allWords])
         def res(i = 0, c = 0, sm = 0):
             if c == mxLen:
-                return sm == 0
+                return 1 if sm == 0 else 0
             elif i == len(words):
                 num = sm % 10
                 carry = sm // 10
@@ -21,14 +21,14 @@ class Solution:
                     if num == 0:
                         return res(0, c+1, carry)
                     else:
-                        return False
+                        return 0
                 if result[c] in charToInt:
                     if charToInt[result[c]] != num:
-                        return False
+                        return 0
                     else:
                         return res(0, c+1, carry)
                 elif num in selected:
-                    return False
+                    return 0
                 elif (num == 0 and result[c] not in nonZero) or num > 0:
                     selected.add(num)
                     charToInt[result[c]] = num
@@ -37,7 +37,7 @@ class Solution:
                     selected.remove(num)
                     return ret
                 else:
-                    return False
+                    return 0
             else:
                 word = words[i]
                 if c >= len(word):
@@ -45,15 +45,15 @@ class Solution:
                 elif word[c] in charToInt:
                     return res(i+1, c, sm + charToInt[word[c]])
                 else:
-                    ret = False
+                    ret = 0
                     for j in range(10):
                         if (j == 0 and word[c] not in nonZero) or j > 0:
                             if j not in selected:
                                 selected.add(j)
                                 charToInt[word[c]] = j
-                                ret |= res(i + 1, c, sm + j)
+                                ret += res(i + 1, c, sm + j)
                                 del charToInt[word[c]]
                                 selected.remove(j)
                     return ret
         
-        return res()
+        return res() > 0
