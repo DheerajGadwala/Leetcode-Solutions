@@ -1,6 +1,5 @@
 class Solution {
     public int longestSubarray(int[] nums, int limit) {
-        
         // min Queue [increaasing], max Queue [decreasing]
         Deque<Integer> minQ = new LinkedList<>(), maxQ = new LinkedList<>();
         // first, last
@@ -11,17 +10,11 @@ class Solution {
             while (minQ.size() > 0 && nums[minQ.peekLast()] > nums[f]) minQ.pollLast();
             while (maxQ.size() > 0 && nums[maxQ.peekLast()] < nums[f]) maxQ.pollLast();
             minQ.add(f);
-            maxQ.add(f);
-            f++;
+            maxQ.add(f++);
             // correcting the l pointer for the current f pointer
             while (nums[maxQ.peekFirst()] - nums[minQ.peekFirst()] > limit) {
-                if (maxQ.peekFirst() == l) {
-                    maxQ.pollFirst();
-                }
-                if (minQ.peekFirst() == l) {
-                    minQ.pollFirst();
-                }
-                l++;
+                if (maxQ.peekFirst() == l) maxQ.pollFirst();
+                if (minQ.peekFirst() == l++) minQ.pollFirst();
             }
             ans = Math.max(ans, f-l);
         }
