@@ -15,26 +15,36 @@
  */
 class Solution {
     public int pseudoPalindromicPaths (TreeNode root) {
-        return res(root, new HashMap<>());
+        return res(root, new int[10]);
     }
     
-    public int res(TreeNode node, Map<Integer, Integer> acc) {
+    private int res(TreeNode node, int[] acc) {
         if (node == null) {
             return 0;
         }
-        else {
-            acc.put(node.val, acc.getOrDefault(node.val, 0) + 1);
-        }
-        if (node.left == null && node.right == null) {
-            int oddCount = 0;
-            for (int k: acc.values()) {
-                oddCount += k % 2 == 1 ? 1 : 0;
-            }
-            return oddCount > 1 ? 0 : 1;
+        else if (node.left == null && node.right == null) {
+            acc[node.val]++;
+            return isPseudoPalindromic(acc) ? 1 : 0;
         }
         else {
-            Map<Integer, Integer> leftCopy = new HashMap<>(acc), rightCopy = new HashMap<>(acc);
-            return res(node.left, leftCopy) + res(node.right, rightCopy);
+            acc[node.val]++;
+            return res(node.left, deepCopy(acc)) + res(node.right, deepCopy(acc));
         }
+    }
+    
+    private int[] deepCopy(int[] arr) {
+        int[] copy = new int[10];
+        for (int i = 0; i < 10; i++) {
+            copy[i] = arr[i];
+        }
+        return copy;
+    }
+    
+    private boolean isPseudoPalindromic(int[] arr) {
+        int oddCount = 0;
+        for (int k: arr) {
+            oddCount += k % 2 == 1 ? 1 : 0;
+        }
+        return oddCount < 2;
     }
 }
