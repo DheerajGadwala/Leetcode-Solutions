@@ -3,7 +3,7 @@ class Solution:
         n = len(nums)
         ret = [0] * n
         i, j = n - 1, n - 1
-        bitCount = [0] * 33
+        bitCount = [0] * 32
         
         # add bits of k to bitCount
         def addCount(k):
@@ -13,6 +13,7 @@ class Solution:
                 k >>= 1
                 cnt += 1
         
+        # check if removing bits of k from bitCount decreases the current bitwise OR of numbers between i and j
         def checkCount(k):
             cnt = 0
             while k > 0:
@@ -22,6 +23,7 @@ class Solution:
                 cnt += 1
             return True
         
+        # remove bits of k from bitCount
         def removeCount(k):
             cnt = 0
             while k > 0:
