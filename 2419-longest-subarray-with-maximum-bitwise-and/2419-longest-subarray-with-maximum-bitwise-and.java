@@ -1,4 +1,6 @@
 class Solution {
+    // Find the max in the array
+    // Return length of the longest subarray that contains only the max values
     public int longestSubarray(int[] nums) {
         int curr = 1, ans = 1, max = nums[0];
         for (int i = 1; i < nums.length; i++) {
