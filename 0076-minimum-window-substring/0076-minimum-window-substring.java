@@ -25,7 +25,6 @@ class Solution {
                 }
                 else break;
             }
-            // System.out.println(i + " " + j + " " + cnt + " " + tot + " " + w);
             if (tot <= 0 && w == 0 && j - i < mn) {
                 mn = j - i;
                 mn_i = i;
