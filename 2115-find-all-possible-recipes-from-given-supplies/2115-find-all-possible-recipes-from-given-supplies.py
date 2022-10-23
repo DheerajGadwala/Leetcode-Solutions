@@ -8,7 +8,6 @@ class Solution:
         grey = set()
         
         def dfs(item):
-            # print(item, black, grey, reject)
             if item in black:
                 return True
             elif item in grey or item in reject or item not in adj:
