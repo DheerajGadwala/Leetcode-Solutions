@@ -11,6 +11,7 @@ class Solution:
                 j -= 1
             return True
         
+        @cache
         def res(s = k):
             if s == "":
                 return [[]]
