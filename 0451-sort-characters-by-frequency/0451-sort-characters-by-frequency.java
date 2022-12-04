@@ -1,7 +1,6 @@
 class Solution {
     
     public String frequencySort(String s) {
-        if(s == null || s.length() == 0) return "";
         
         Map<Character, Integer> freq = new HashMap<>();
         for (char c: s.toCharArray()) {
