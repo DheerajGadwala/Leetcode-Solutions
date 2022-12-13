@@ -22,7 +22,6 @@ class Solution:
         
         for i in houses:
             f, c = search(i)
-            # print(i, heaters[f], heaters[c], min(abs(i - heaters[f]), abs(i - heaters[c])))
             radius = max(radius, min(abs(i - heaters[f]), abs(i - heaters[c])))
             
         return radius
