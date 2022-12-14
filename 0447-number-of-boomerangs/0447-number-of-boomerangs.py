@@ -13,5 +13,4 @@ class Solution:
             for d in mp:
                 x = mp[d]
                 ans += x * (x-1)
-        
         return ans
