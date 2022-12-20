@@ -19,7 +19,6 @@ class Solution {
         this.p = p;
         this.q = q;
         res(root, 0);
-        // System.out.println(ph + " " + qh + " " + ah);
         return ph + qh - 2*ah;
     }
     private TreeNode res(TreeNode node, int h) {
@@ -29,7 +28,6 @@ class Solution {
         else {
             TreeNode left = res(node.left, h+1);
             TreeNode right = res(node.right, h+1);
-            // System.out.println(left + " " + right + " " + node.val);
             if (left != null && right != null) ah = h;
             else if ((node.val == p || node.val == q) && (left != null || right != null)) ah = h;
             else if (node.val == p && node.val == q) ah = h;
