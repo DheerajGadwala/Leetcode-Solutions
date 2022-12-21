@@ -6,7 +6,7 @@ class Solution:
             adj[u-1].append((v-1, w*(k+1)))
             adj[v-1].append((u-1, w*(k+1)))
         
-        def bfs(src):
+        def dijkstra(src):
             q = [(appleCost[src], src)]
             cost = {src:0}
             ans = math.inf
@@ -19,4 +19,4 @@ class Solution:
                         cost[v] = cost[u] + w
             return ans
         
-        return [bfs(i) for i in range(n)]
+        return [dijkstra(i) for i in range(n)]
