@@ -20,12 +20,8 @@ class Solution:
                     cnt += mem[(u, v)][1]
             return (ret+cnt-1, cnt)
         
-        for i in range(n):
-            dfs(i, set())
-        
         ret = []
         for i in range(n):
-            ret.append(0)
-            for v in adj[i]:
-                ret[-1] += mem[(i, v)][0]
+            ret.append(dfs(i, set())[0] - n)
+
         return ret
