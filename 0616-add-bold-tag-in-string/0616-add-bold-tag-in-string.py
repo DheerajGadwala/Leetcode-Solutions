@@ -46,7 +46,6 @@ class Solution:
             else:
                 merged.append([st, e])
                 
-        #print(intervals, merged)
         starts = {i[0] for i in merged}
         ends = {i[1] - 1 for i in merged}
         ret = []
