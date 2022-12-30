@@ -31,8 +31,6 @@ class Solution:
             if days[-1] != e:
                 days.append(e)
         
-        # print(scores)
-        
         return scores[days[-1]]
         
             
