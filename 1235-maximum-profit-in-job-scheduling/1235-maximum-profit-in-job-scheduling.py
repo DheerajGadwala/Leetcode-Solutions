@@ -26,7 +26,7 @@ class Solution:
                 else:
                     h = m - 1
             
-            scores[e] = max(scores.get(e, 0), scores.get(floor) + v, scores[days[-1]])
+            scores[e] = max(scores.get(floor) + v, scores[days[-1]])
             
             if days[-1] != e:
                 days.append(e)
