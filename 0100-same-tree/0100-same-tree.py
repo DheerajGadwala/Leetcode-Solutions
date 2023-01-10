@@ -6,30 +6,14 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-        in1 = self.inOrder(p)
-        pr1 = self.preOrder(p)
-        in2 = self.inOrder(q)
-        pr2 = self.preOrder(q)
-        if len(in1) != len(in2):
-            return False
-        for i in range(len(in1)):
-            if(in1[i]!=in2[i]):
-                return False
-        for i in range(len(pr1)):
-            if(pr1[i]!=pr2[i]):
-                return False
-        return True
-    
-    def inOrder(self, node):
-        if node is None:
-            return [None]
-        else:
-            return self.inOrder(node.left) + [node.val] + self.inOrder(node.right)
         
-    def preOrder(self, node):
-        if node is None:
-            return [None]
-        else:
-            return [node.val] + self.preOrder(node.left) + self.preOrder(node.right)
+        def res(p = p, q = q):
+            if p is None and q is None:
+                return True
+            elif p is None or q is None:
+                return False
+            else:
+                return p.val == q.val and res(p.left, q.left) and res(p.right, q.right)
     
+        return res()
     
