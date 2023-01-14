@@ -34,7 +34,5 @@ class Solution:
         n = len(s1)
         for i in range(n):
             ds.union(s1[i], s2[i])
-        for i in 'abcdefghijklmnopqrstuvwxyz':
-            ds.find(i)
         ret = [ds.find(i) for i in baseStr]
         return ''.join(ret)
