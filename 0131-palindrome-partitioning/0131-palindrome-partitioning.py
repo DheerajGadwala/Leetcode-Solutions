@@ -11,7 +11,6 @@ class Solution:
                 j -= 1
             return True
         
-        @cache
         def res(s = k):
             if s == "":
                 return [[]]
@@ -22,6 +21,7 @@ class Solution:
                 curr += s[i]
                 if (isPal(curr)):
                     rem = res(s[i+1:])
+                    print(s, curr, rem)
                     for val in rem:
                         ret.append([curr] + val)
             return ret
