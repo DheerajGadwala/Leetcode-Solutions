@@ -50,9 +50,6 @@ class SummaryRanges:
         self.ret.discard(mi)
         self.ret.discard(ri)
         self.ret.add(ni)
-        
-
-        
 
     def addNum(self, value: int) -> None:
         self.union(value)
