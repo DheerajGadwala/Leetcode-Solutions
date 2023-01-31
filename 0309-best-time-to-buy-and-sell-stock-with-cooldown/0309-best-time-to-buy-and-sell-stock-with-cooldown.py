@@ -1,13 +1,13 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        
+    def maxProfit(self, nums: List[int]) -> int:
+        n = len(nums)
         @cache
-        def ret(pos = 0, buy = True):
-            if pos >= len(prices):
+        def res(pos = 0, bought = False):
+            nonlocal n
+            if pos >= n:
                 return 0
-            elif buy:
-                return max(-prices[pos] + ret(pos+1, False), ret(pos+1, True))
+            elif bought:
+                return max(nums[pos] + res(pos + 2, False), res(pos + 1, True))
             else:
-                return max(prices[pos] + ret(pos+2, True), ret(pos+1, False))
-        
-        return ret()
+                return max(-nums[pos] + res(pos + 1, True), res(pos + 1, False))
+        return res()
