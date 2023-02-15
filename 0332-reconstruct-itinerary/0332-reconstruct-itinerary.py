@@ -16,25 +16,22 @@ class Solution:
             adj[u].sort()
         
         ans = None
-        visCount = 1
         
         def res(u = "JFK"):
-            nonlocal ans, visCount
+            nonlocal ans
             path.append(u)
             # print(path, visCount, len(tickets) + 1)
             if ans != None:
                 return
-            if visCount == len(tickets) + 1:
+            if len(path) == len(tickets) + 1:
                 ans = path[:]
                 return
             
             for v in adj[u]:
                 if visited[u+v] > 0:
                     visited[u + v] -= 1
-                    visCount += 1
                     res(v)
                     visited[u + v] += 1
-                    visCount -= 1
             
             path.pop()
         
