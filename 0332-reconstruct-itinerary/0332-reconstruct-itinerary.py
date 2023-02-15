@@ -23,7 +23,7 @@ class Solution:
             # print(path, visCount, len(tickets) + 1)
             if ans != None:
                 return
-            if len(path) == len(tickets) + 1:
+            if ans == None and len(path) == len(tickets) + 1:
                 ans = path[:]
                 return
             
