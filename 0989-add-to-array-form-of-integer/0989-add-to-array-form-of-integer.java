@@ -1,6 +1,6 @@
 class Solution {
     public List<Integer> addToArrayForm(int[] num, int k) {
-        List<Integer> ret = new LinkedList<>();
+        List<Integer> ret = new ArrayList<>();
         int carry = 0, i = num.length - 1;
         while (i > -1 || k > 0 || carry > 0) {
             int val = k % 10 + carry + (i > -1 ? num[i] : 0);
