@@ -7,8 +7,9 @@ class Solution:
         running = []
         q = []
         time = 0
-        while time < n:
-            q.append((t[time], time))
+        while time < n or len(q) != 0:
+            if time < n:
+                q.append((t[time], time))
             while len(running) != 0 and running[0][0] == time:
                 heappush(s, heappop(running)[1])
             while len(s) != 0 and len(q) != 0:
@@ -16,16 +17,7 @@ class Solution:
                 y = q.pop(0)
                 heappush(running, (time+y[0], x))
                 ret[y[1]] = x[1]
-            time += 1
-        #print(q, running, time)
-        while len(q) != 0:
-            while len(running) != 0 and running[0][0] == time:
-                heappush(s, heappop(running)[1])
-            while len(s) != 0 and len(q) != 0:
-                x = heappop(s)
-                y = q.pop(0)
-                heappush(running, (time+y[0], x))
-                ret[y[1]] = x[1]
-            time = running[0][0]
+            time = time + 1 if time < n else running[0][0]
+            
         return ret
             
