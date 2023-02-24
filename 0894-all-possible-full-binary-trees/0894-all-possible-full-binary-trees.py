@@ -8,7 +8,9 @@ class Solution:
     def allPossibleFBT(self, n: int) -> List[Optional[TreeNode]]:
         
         def res(n=n):
-            if n == 1:
+            if n % 2 == 0:
+                return []
+            elif n == 1:
                 return [TreeNode(0)]
             else:
                 ret = []
