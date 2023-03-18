@@ -22,6 +22,7 @@ class Solution:
         ans = 0
         for i in range(n):
             ans = max(ans, nums[i] * (rs[r[i]] - rs[l[i]]))
+        print(l, r, rs)
         return ans % (10**9+7)
             
             
