@@ -6,11 +6,11 @@ class Solution:
         for u, v, d in roads:
             adj[u][v] = d
             adj[v][u] = d
-        q = [1]
+        q = deque([1])
         minEdge = math.inf
         visited = {1, }
         while len(q) != 0:
-            u = q.pop(0)
+            u = q.popleft()
             for v in adj[u]:
                 if v not in visited:
                     visited.add(v)
