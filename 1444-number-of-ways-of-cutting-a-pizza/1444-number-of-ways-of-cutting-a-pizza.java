@@ -3,7 +3,7 @@ class Solution {
         int mod = 1000000007;
         int m = pizza.length, n = pizza[0].length();
         int[][] grid = new int[m+1][n+1];
-        int dp[][][] = new int[m+1][n+1][k];
+        int[][][] dp = new int[m+1][n+1][k];
         for (int i = m - 1; i > -1; i--) {
             for (int j = n - 1; j > -1; j--) {
                 grid[i][j] = pizza[i].charAt(j) == 'A' ? 1 : 0;
