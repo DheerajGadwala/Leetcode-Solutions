@@ -11,7 +11,6 @@ class Solution {
                 dp[i][j][0] = grid[i][j] == 0 ? 0 : 1;
             }
         }
-        if (k == 1) return dp[0][0][0];
         for (int p = 1; p < k; p++) {
             for (int q = m - 1; q > -1; q--) {
                 for (int r = n - 1; r > -1; r--) {
