@@ -1,5 +1,6 @@
 class Solution:
     def ways(self, pizza: List[str], k: int) -> int:
+        mod = 10**9+7
         m, n = len(pizza), len(pizza[0])
         grid = [[0] * (n+1) for i in range(m+1)]
         for i in range(m - 1, -1, -1):
@@ -9,9 +10,8 @@ class Solution:
         
         @cache
         def res(i = 0, j = 0, k = k):
-            mod = 10**9+7
+            nonlocal mod
             if k == 1:
-                #print(i, j, k, 1 if grid[i][j] > 0 else 0)
                 return 1 if grid[i][j] > 0 else 0
             elif i == m or j == n:
                 return 0
@@ -21,12 +21,13 @@ class Solution:
                     top = grid[i][j] - grid[l][j]
                     if top > 0:
                         ret += res(l, j, k - 1)
+                        ret %= mod
                 for l in range(j+1, n):
                     left = grid[i][j] - grid[i][l]
                     if left > 0:
                         ret += res(i, l, k - 1)
-                #print(i, j, k, ret)
-                return ret%mod
+                        ret %= mod
+                return ret
         
         return res()
                 
