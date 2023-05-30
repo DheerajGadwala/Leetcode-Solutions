@@ -16,7 +16,7 @@ class Node {
 
 class MyHashSet {
 
-    static int size = 1001;
+    static int size = 10091;
     Node[] map;
     
     public MyHashSet() {
