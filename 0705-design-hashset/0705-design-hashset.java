@@ -16,7 +16,7 @@ class Node {
 
 class MyHashSet {
 
-    static int size = 11;
+    static int size = 1001;
     Node[] map;
     
     public MyHashSet() {
@@ -53,14 +53,6 @@ class MyHashSet {
             curr = curr.next;
         }
         return false;
-    }
-    
-    public void print () {
-        for (Node node: map) {
-            while (node != null) {System.out.print(node.val + " "); node = node.next;}
-            System.out.println();
-        }
-        System.out.println();
     }
 }
 
