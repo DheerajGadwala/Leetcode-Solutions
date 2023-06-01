@@ -14,7 +14,6 @@ class Solution {
             List<Integer> list = lists[i];
             int m = list.size();
             if (m == 0) continue;
-            // System.out.println(list);
             for(int j = m - 2; j > -1; j--) {
                 if (list.get(j) + k == list.get(j + 1)) {
                     long c = a + b;
@@ -25,7 +24,6 @@ class Solution {
                     a = b;
                     b *= 2;
                 }
-                // System.out.println(j + " " + b + " " + a);
             }
             ans *= b;
         }
