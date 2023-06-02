@@ -23,17 +23,12 @@ class Solution {
                     long r = bombs[i][2];
                     if (Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) <= r * r) {
                         adj[i].add(j);
-                        // adj[j].add(i);
                     }
                 }
             }
         }
         
-        // for (Set<Integer> s: adj) {
-        //     System.out.println(s);
-        // }
-        
-        // 2. Perform DFS to get max component size
+        // 2. Perform DFS to get max component size, O(len(bombs)^3) | O(n^3)
         this.adj = adj;
         int ans = 1;
         for (int i = 0; i < n; i++) {
