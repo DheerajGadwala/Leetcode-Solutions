@@ -13,12 +13,6 @@ class Solution {
                 }
             }
         }
-        // for (int i = 0; i < m+1; i++) {
-        //     for (int j = 0; j < n+1; j++) {
-        //         System.out.print(mem[i][j][0]+","+mem[i][j][1]+","+mem[i][j][2]+" ");
-        //     }
-        //     System.out.println();
-        // }
         return mem[m][n][0];
     }
 }
