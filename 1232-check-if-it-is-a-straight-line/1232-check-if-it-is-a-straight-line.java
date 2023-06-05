@@ -1,16 +1,11 @@
 class Solution {
     public boolean checkStraightLine(int[][] coors) {
-        if (coors[1][0] == coors[0][0]) {
-            for (int[] v: coors) {
-                if (v[0] != coors[1][0])
-                    return false;
-            }
-            return true;
-        }
-        double m = 1.0*(coors[1][1] - coors[0][1]) / (coors[1][0] - coors[0][0]);
-        double c = coors[0][1] - coors[0][0] * m;
-        for (int[] v: coors) {
-            if (v[1] != m * v[0] + c)
+        
+        int y2_m_y1 = coors[1][1] - coors[0][1];
+        int x2_m_x1 = coors[1][0] - coors[0][0];
+        int x1 = coors[0][0], y1 = coors[0][1];
+        for (int[] coor: coors) {
+            if ((coor[1] - y1) * x2_m_x1 != (coor[0] - x1) * y2_m_y1)
                 return false;
         }
         return true;
