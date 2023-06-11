@@ -1,14 +1,10 @@
 class Node {
+    
     int id, val;
     
     Node(int id, int val) {
         this.id = id;
         this.val = val;
-    }
-    
-    @Override
-    public String toString() {
-        return id + " " + val + ";";
     }
 }
 
@@ -46,9 +42,12 @@ class SnapshotArray {
         while (low <= high) {
             int mid = (low + high) / 2;
             int curr = l.get(mid).id;
-            // if (curr == snap_id) ans = mid;
-            if (curr <= snap_id) {ans = mid; low = mid + 1;}
-            else high = mid - 1;
+            if (curr <= snap_id) {
+                ans = mid; 
+                low = mid + 1;
+            }
+            else 
+                high = mid - 1;
             
         }
         return l.get(ans).val;
