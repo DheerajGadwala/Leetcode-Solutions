@@ -1,21 +1,14 @@
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        n = len(nums)
-        i, j = 0, 0
-        zeroPosition = None
+        prev = -1
+        curr = 0
         ans = 0
-        while j < n:
-            if nums[j] != 0:
-                j += 1
-            elif zeroPosition is None:
-                zeroPosition = j
-                j += 1
+        for i in nums:
+            if i != 0:
+                curr += i
             else:
-                i = zeroPosition + 1
-                zeroPosition = j
-                j += 1
-            ans = max(ans, j - i - 1)
-        
-        return ans
-                
+                ans = max(ans, prev+curr)
+                prev = curr
+                curr = 0
+        return max(ans, prev + curr)
                 
