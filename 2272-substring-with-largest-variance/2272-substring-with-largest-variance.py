@@ -21,9 +21,7 @@ class Solution:
                         else:
                             l.append(-1)
                         y = True
-                # print(i, j, x, y)
                 if x and y:
-                    # print(i, j, l)
                     for n in range(len(l)):
                         ans = max(ans, abs(l[n]) - 1)
                     curr = 0
