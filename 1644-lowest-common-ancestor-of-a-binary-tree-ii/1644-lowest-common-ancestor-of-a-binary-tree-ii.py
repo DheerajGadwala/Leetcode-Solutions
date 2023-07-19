@@ -7,31 +7,22 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        lca = None
-        def res(node):
-            nonlocal lca
-            if node is None:
-                return None
-            l = res(node.left)
-            r = res(node.right)
-            
-            if l in [p, q] and r in [p, q]:
-                lca = node
-                return None
-            elif l in [p, q] and node in [p, q]:
-                lca = node
-                return None
-            elif r in [p, q] and node in [p, q]:
-                lca = node
-                return None
-            elif node in [p, q]:
-                return node
-            elif l is not None:
-                return l
-            elif r is not None:
-                return r
-            else:
-                return None
-        res(root)
-        return lca
-            
+        par = dict()
+        height = dict()
+        def res(node, parent, h = 0):
+            if node is not None:
+                par[node] = parent
+                height[node] = h
+                res(node.left, node, h+1)
+                res(node.right, node, h+1)
+        res(root, None)
+        if p not in par or q not in par:
+            return None
+        while height[p] > height[q]:
+            p = par[p]
+        while height[q] > height[p]:
+            q = par[q]
+        while p is not q:
+            p = par[p]
+            q = par[q]
+        return p
