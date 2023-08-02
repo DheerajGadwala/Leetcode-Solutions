@@ -13,10 +13,8 @@ class Solution:
                 for j in range(1, len(l)):
                     other = l[j]
                     new_ret = ret + other
-                    #print(ret, other)
                     for i in range(min(len(other), len(ret))):
                         x = len(other[:-1])
-                        #print(other[:i+1], ret[-1:-i-2:-1][::-1])
                         if other[:i+1] == ret[-1:-i-2:-1][::-1]:
                             new_ret = ret + other[i+1:]
                     ret = new_ret
@@ -34,8 +32,6 @@ class Solution:
                     curr[j] = prev
                 res(i+1)
 
-        #print(merge(['xzyz', 'zzz']))
-        #return ""
         res()
         l = []
         for i in ret:
