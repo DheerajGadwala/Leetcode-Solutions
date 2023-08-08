@@ -10,4 +10,5 @@ class Solution:
             else:
                 l.appendleft(i)
         l = list(l)
-        return ''.join(l) if d else ''.join(l[::-1])
+        l = l[::-1] if not d else l
+        return ''.join(l)
