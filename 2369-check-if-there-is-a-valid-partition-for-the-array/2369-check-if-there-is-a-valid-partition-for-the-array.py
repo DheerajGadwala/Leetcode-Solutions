@@ -3,7 +3,7 @@ class Solution:
         
         n = len(nums)
         
-        @lru_cache(10**4)
+        @lru_cache(10**3)
         def res(pos = 0):
             if pos == n:
                 return True
