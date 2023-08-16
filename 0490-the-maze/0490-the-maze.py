@@ -4,6 +4,8 @@ class Solution:
         m, n = len(maze), len(maze[0])
         for i in range(m):
             for j in range(n):
+                if maze[i][j] == 1:
+                    continue
                 adj[(i, j)] = []
                 k = 1
                 while i + k < m and maze[i+k][j] == 0:
