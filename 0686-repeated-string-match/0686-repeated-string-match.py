@@ -14,7 +14,6 @@ class Solution:
                 j = lps[j-1]
         prev, j = -1, 0
         cnt = 1
-        print(lps)
         while prev != j:
             prev = j
             i = 0
