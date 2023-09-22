@@ -2,6 +2,7 @@ class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         m, n = len(s), len(t)
         
+        @cache
         def res(i = 0, j = 0):
             if i == m:
                 return True
