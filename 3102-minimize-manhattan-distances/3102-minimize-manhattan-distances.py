@@ -1,12 +1,6 @@
 class Solution:
     def minimumDistance(self, points: List[List[int]]) -> int:
         
-        
-        
-#         for x1, y1 in points:
-#             for x2, y2 in points:
-#                 print((x1, y1), (x2, y2), abs(y2-y1)+abs(x2-x1))
-        
         xpy = [math.inf, -math.inf]
         xmy = [math.inf, -math.inf]
         xpy_val = [None, None]
