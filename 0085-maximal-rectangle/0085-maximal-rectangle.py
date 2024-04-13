@@ -16,6 +16,8 @@ class Solution:
                     l = min(l, matrix[j][k])
                     h = j - i + 1
                     ans = max(ans, l*h)
+                    if l == 0:
+                        break
         
         return ans
         
