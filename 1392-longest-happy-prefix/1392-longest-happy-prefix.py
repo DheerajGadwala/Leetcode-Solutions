@@ -12,7 +12,4 @@ class Solution:
                 j+=1
             else:
                 i=lps[i]
-        ret = []
-        for i in range(lps[-1]):
-            ret.append(s[i])
-        return ''.join(ret)
+        return s[:lps[-1]]
